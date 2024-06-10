@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import { MdErrorOutline, MdCheck } from "react-icons/md";
 import { CiWarning } from "react-icons/ci";
@@ -17,6 +17,7 @@ import {
     flexRender,
     SortingState,
 } from "@tanstack/react-table";
+import Button from "@/app/components/common/Button";
 
 type Person = {
     name: string;
@@ -66,15 +67,41 @@ export default function Demo() {
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-4">
                     <h2 className="text-1xl font-bold text-teal">Button</h2>
-                    <button className="btn w-32">Button</button>
-                    <button className="btn btn-neutral w-32">Neutral</button>
-                    <button className="btn btn-primary w-32">Primary</button>
-                    <button className="btn btn-secondary w-32">
-                        Secondary
-                    </button>
-                    <button className="btn btn-accent w-32">Accent</button>
-                    <button className="btn btn-ghost w-32">Ghost</button>
-                    <button className="btn btn-link w-32">Link</button>
+                    <Button
+                        text="Button"
+                        className="btn w-32"
+                        onClick={() => alert("Button clicked: Button")}
+                    />
+                    <Button
+                        text="Neutral"
+                        className="btn btn-neutral w-32"
+                        onClick={() => alert("Button clicked: Neutral")}
+                    />
+                    <Button
+                        text="Primary"
+                        className="btn-primary w-32"
+                        onClick={() => alert("Button clicked: Primary")}
+                    />
+                    <Button
+                        text="Secondary"
+                        className="btn btn-secondary w-32"
+                        onClick={() => alert("Button clicked: Secondary")}
+                    />
+                    <Button
+                        text="Accent"
+                        className="btn btn-accent w-32"
+                        onClick={() => alert("Button clicked: Accent")}
+                    />
+                    <Button
+                        text="Ghost"
+                        className="btn btn-ghost w-32"
+                        onClick={() => alert("Button clicked: Ghost")}
+                    />
+                    <Button
+                        text="Link"
+                        className="btn btn-link w-32"
+                        onClick={() => alert("Button clicked: Link")}
+                    />
                 </div>
             </div>
 
@@ -185,12 +212,63 @@ export default function Demo() {
     );
 }
 
+const Modal = React.forwardRef<HTMLDialogElement>((props, ref) => {
+    const [data, setData] = useState([]);
+
+    useMemo(() => {
+        fetch("https://jsonplaceholder.typicode.com/posts")
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the API response data here
+                console.log(data[0]);
+                setData(data);
+                // modalRef.current!.showModal();
+            })
+            .catch((error) => {
+                // Handle any errors that occur during the API call
+                console.error(error);
+            });
+    }, [props.age]);
+    // fetch("https://jsonplaceholder.typicode.com/posts")
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         // Handle the API response data here
+    //         console.log(data[0]);
+    //         setData(data);
+    //         // modalRef.current!.showModal();
+    //     })
+    //     .catch((error) => {
+    //         // Handle any errors that occur during the API call
+    //         console.error(error);
+    //     });
+
+    // create a variable that can generate a random number 0-99
+    const randomNum = Math.floor(Math.random() * 100);
+    return (
+        <dialog id="my_modal_3" className="modal" ref={ref}>
+            <div className="modal-box">
+                <form method="dialog">
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        <IoClose />
+                    </button>
+                </form>
+                <h3 className="font-bold text-lg">{data[randomNum]?.title}</h3>
+                <p className="py-4">{data[randomNum]?.body}</p>
+            </div>
+        </dialog>
+    );
+});
+
+Modal.displayName = "Modal";
+
 function Table() {
+    const modalRef = useRef<HTMLDialogElement>(null);
     const [sorting, setSorting] = useState<SortingState>([]);
     const [pagination, setPagination] = useState({
         pageIndex: 0,
         pageSize: 10,
     });
+    const [age, setAge] = useState("");
 
     const table = useReactTable({
         data,
@@ -250,6 +328,13 @@ function Table() {
                                 <td
                                     key={cell.id}
                                     className="py-3 px-6 border border-gray-200 text-sm text-gray-700 w-52"
+                                    onClick={() => {
+                                        modalRef.current!.showModal();
+
+                                        const { row } = cell;
+                                        const { age } = row.original;
+                                        setAge(age);
+                                    }}
                                 >
                                     {flexRender(
                                         cell.column.columnDef.cell,
@@ -283,6 +368,20 @@ function Table() {
                     <GrFormNextLink />
                 </button>
             </div>
+            <Modal ref={modalRef} age={age} />
+            {/* <dialog id="my_modal_3" className="modal" ref={modalRef}>
+                <div className="modal-box">
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                            <IoClose />
+                        </button>
+                    </form>
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">
+                        Press ESC key or click on ✕ button to close
+                    </p>
+                </div>
+            </dialog> */}
         </div>
     );
 }
