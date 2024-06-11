@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 import { MdErrorOutline, MdCheck } from "react-icons/md";
 import { CiWarning } from "react-icons/ci";
-import { IoClose } from "react-icons/io5";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 import { FaSortUp, FaSortDown } from "react-icons/fa";
 
@@ -18,6 +17,7 @@ import {
 } from "@tanstack/react-table";
 import Button from "@/app/components/common/Button";
 import Input from "@/app/components/common/Input";
+import Dialog from "@/app/components/common/Dialog";
 
 type Person = {
     name: string;
@@ -109,25 +109,12 @@ export default function Demo() {
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Modal</h2>
-                    <button
-                        className="btn"
+
+                    <Button
+                        text="Open Modal"
+                        className="btn-accent w-32"
                         onClick={() => modalRef.current!.showModal()}
-                    >
-                        Open Modal
-                    </button>
-                    <dialog id="my_modal_3" className="modal" ref={modalRef}>
-                        <div className="modal-box">
-                            <form method="dialog">
-                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                                    <IoClose />
-                                </button>
-                            </form>
-                            <h3 className="font-bold text-lg">Hello!</h3>
-                            <p className="py-4">
-                                Press ESC key or click on ✕ button to close
-                            </p>
-                        </div>
-                    </dialog>
+                    />
                 </div>
             </div>
 
@@ -205,6 +192,78 @@ export default function Demo() {
             </div>
 
             <Table />
+
+            <Dialog ref={modalRef} className="w-[40%] ">
+                <div className="flex flex-col gap-2">
+                    <div className="flex flex-col flex-wrap justify-center items-center gap-4">
+                        <h2 className="text-2xl font-bold text-teal">
+                            Add New Item
+                        </h2>
+                        <div className="flex gap-4">
+                            <Input
+                                id="name"
+                                label="Name"
+                                value={text}
+                                className="w-64"
+                                isRequired
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                            <Input
+                                id="name"
+                                label="Name"
+                                value={text}
+                                className="w-64"
+                                isRequired
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="flex gap-4">
+                            <Input
+                                id="name"
+                                label="Name"
+                                value={text}
+                                className="w-64"
+                                isRequired
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                            <Input
+                                id="name"
+                                label="Name"
+                                value={text}
+                                className="w-64"
+                                isRequired
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="flex gap-4">
+                            <Input
+                                id="name"
+                                label="Name"
+                                value={text}
+                                className="w-64"
+                                isRequired
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                            <Input
+                                id="name"
+                                label="Name"
+                                value={text}
+                                className="w-64"
+                                isRequired
+                                onChange={(e) => setText(e.target.value)}
+                            />
+                        </div>
+
+                        <Button
+                            text="Close"
+                            className="btn-accent w-32 "
+                            onClick={() => modalRef.current!.close()}
+                        />
+                    </div>
+                </div>
+            </Dialog>
         </>
     );
 }
