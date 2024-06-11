@@ -18,6 +18,7 @@ import {
 import Button from "@/app/components/common/Button";
 import Input from "@/app/components/common/Input";
 import Dialog from "@/app/components/common/Dialog";
+import Alert from "@/app/components/common/Alert";
 
 type Person = {
     name: string;
@@ -121,19 +122,24 @@ export default function Demo() {
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-2">
                     <h2 className="text-1xl font-bold text-teal">Alerts</h2>
-                    <div role="alert" className="alert alert-success">
+                    <Alert
+                        className="alert-success"
+                        text="Your puchase has been confirmed"
+                    >
                         <MdCheck />
-                        <span>Your purchase has been confirmed!</span>
-                    </div>
-                    <div role="alert" className="alert alert-warning">
+                    </Alert>
+                    <Alert
+                        className="alert-warning"
+                        text="Warning: Invalid email address!"
+                    >
                         <CiWarning />
-                        <span>Warning: Invalid email address!</span>
-                    </div>
-                    <div role="alert" className="alert alert-error">
+                    </Alert>
+                    <Alert
+                        className="alert-error"
+                        text="Error! Task failed successfully."
+                    >
                         <MdErrorOutline />
-                        <span>Error! Task failed successfully.</span>
-                    </div>
-                    <div className="flex flex-col gap-4"></div>
+                    </Alert>
                 </div>
             </div>
 
@@ -199,6 +205,13 @@ export default function Demo() {
                         <h2 className="text-2xl font-bold text-teal">
                             Add New Item
                         </h2>
+
+                        <Alert
+                            className="alert-success w-fit"
+                            text="You've successfully added a new item!"
+                        >
+                            <MdCheck />
+                        </Alert>
                         <div className="flex gap-4">
                             <Input
                                 id="name"
