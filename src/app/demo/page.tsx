@@ -20,39 +20,7 @@ import Input from "@/app/components/common/Input";
 import Dialog from "@/app/components/common/Dialog";
 import Alert from "@/app/components/common/Alert";
 import Loading from "@/app/components/common/Loading";
-
-type Person = {
-    name: string;
-    age: number;
-    status: string;
-};
-
-type Column = {
-    accessorKey: string;
-    header: string;
-};
-
-const data: Person[] = [
-    { name: "Jane Doe", age: 28, status: "Single" },
-    { name: "John Smith", age: 34, status: "Married" },
-    { name: "Alice Johnson", age: 45, status: "Divorced" },
-    { name: "Chris Lee", age: 22, status: "Single" },
-];
-
-const columns: Column[] = [
-    {
-        accessorKey: "name",
-        header: "Name",
-    },
-    {
-        accessorKey: "age",
-        header: "Age",
-    },
-    {
-        accessorKey: "status",
-        header: "Status",
-    },
-];
+import Table from "@/app/components/common/Table";
 
 export default function Demo() {
     const modalRef = useRef<HTMLDialogElement>(null);
@@ -182,23 +150,25 @@ export default function Demo() {
                 </div>
             </div>
 
-            <div className="flex w-full h-auto p-11 gap-4 items-center">
+            <div className="flex max-w-[600px] p-10 gap-4 items-center">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Text Input</h2>
                     <TagsInput
                         value={selected}
                         onChange={setSelected}
-                        name="fruits"
-                        placeHolder="enter fruits"
+                        name="options"
+                        placeHolder="Enter options"
                         classNames={{
                             tag: "text-teal",
-                            input: "text-teal",
+                            input: "text-teal max-h-[200px]",
                         }}
+                        // disabled
                     />
                 </div>
             </div>
-
-            <Table />
+            <div className="w-full p-10 flex justify-center">
+                <Table />
+            </div>
 
             <Dialog ref={modalRef} className="w-[40%] ">
                 <div className="flex flex-col gap-2">
@@ -281,107 +251,5 @@ export default function Demo() {
 
             {/* <Loading /> */}
         </>
-    );
-}
-
-function Table() {
-    const [sorting, setSorting] = useState<SortingState>([]);
-    const [pagination, setPagination] = useState({
-        pageIndex: 0,
-        pageSize: 10,
-    });
-
-    const table = useReactTable({
-        data,
-        columns,
-        state: {
-            sorting,
-            pagination,
-        },
-        onSortingChange: setSorting,
-        onPaginationChange: setPagination,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        debugTable: true,
-    });
-
-    return (
-        <div className="p-4">
-            <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
-                <thead>
-                    {table.getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th
-                                    key={header.id}
-                                    onClick={header.column.getToggleSortingHandler()}
-                                    className="py-3 px-6 bg-teal text-white text-left text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors duration-300"
-                                >
-                                    {flexRender(
-                                        header.column.columnDef.header,
-                                        header.getContext()
-                                    )}
-                                    <span className="inline-block">
-                                        {header.column.getIsSorted() ? (
-                                            header.column.getIsSorted() ===
-                                            "desc" ? (
-                                                <FaSortDown />
-                                            ) : (
-                                                <FaSortUp />
-                                            )
-                                        ) : (
-                                            ""
-                                        )}
-                                    </span>
-                                </th>
-                            ))}
-                        </tr>
-                    ))}
-                </thead>
-                <tbody>
-                    {table.getRowModel().rows.map((row) => (
-                        <tr
-                            key={row.id}
-                            className="hover:bg-gray-100 transition-colors duration-200"
-                        >
-                            {row.getVisibleCells().map((cell) => (
-                                <td
-                                    key={cell.id}
-                                    className="py-3 px-6 border border-gray-200 text-sm text-gray-700 w-52"
-                                >
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext()
-                                    )}
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div className="flex justify-center items-center py-4 gap-10">
-                <button
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    <GrFormPreviousLink />
-                </button>
-
-                <div className="text-sm text-gray-700">
-                    Page{" "}
-                    <strong>
-                        {table.getState().pagination.pageIndex + 1} of{" "}
-                        {table.getPageCount()}
-                    </strong>
-                </div>
-                <button
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    <GrFormNextLink />
-                </button>
-            </div>
-        </div>
     );
 }
