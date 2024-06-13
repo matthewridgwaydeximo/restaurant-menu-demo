@@ -7,7 +7,7 @@ import {
     SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { FaSortDown, FaSortUp, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaSortDown, FaSortUp, FaTrashAlt } from "react-icons/fa";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 
 type TTableProps = {};
@@ -76,6 +76,22 @@ const data: Items[] = [
         cost: 6,
         options: ["small", "medium", "large"],
         stock: 8,
+    },
+    {
+        category: "Drinks",
+        name: "Item 7",
+        price: 5,
+        cost: 2,
+        options: ["small", "medium", "large"],
+        stock: 25,
+    },
+    {
+        category: "Drinks",
+        name: "Item 7",
+        price: 5,
+        cost: 2,
+        options: ["small", "medium", "large"],
+        stock: 25,
     },
     {
         category: "Drinks",
@@ -201,7 +217,10 @@ export default function Table({}: TTableProps) {
                                     )}
                                     {index ===
                                         row.getVisibleCells().length - 1 && (
-                                        <FaTrashAlt className="absolute top-1/2 right-2 transform -translate-y-1/2 text-red-500 cursor-pointer" />
+                                        <>
+                                            <FaEdit className="absolute top-1/2 right-8  transform -translate-y-1/2 text-blue-500 cursor-pointer" />
+                                            <FaTrashAlt className="absolute top-1/2 right-2 transform -translate-y-1/2 text-red-500 cursor-pointer" />
+                                        </>
                                     )}
                                 </td>
                             ))}
