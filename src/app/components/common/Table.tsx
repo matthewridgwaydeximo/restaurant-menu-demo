@@ -1,3 +1,4 @@
+import useItemsContext from "@/app/hooks/useItemsContext";
 import {
     useReactTable,
     getCoreRowModel,
@@ -6,7 +7,7 @@ import {
     flexRender,
     SortingState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEdit, FaSortDown, FaSortUp, FaTrashAlt } from "react-icons/fa";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 
@@ -143,6 +144,12 @@ export default function Table({}: TTableProps) {
         pageIndex: 0,
         pageSize: 10,
     });
+
+    const { test, setTest } = useItemsContext();
+
+    useEffect(() => {
+        console.log(test);
+    }, [test]);
 
     const table = useReactTable({
         data,
