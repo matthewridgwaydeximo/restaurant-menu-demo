@@ -1,3 +1,8 @@
+import Dialog from "@/app/components/common/Dialog";
+import DeleteItem from "@/app/components/dialog/DeleteItem";
+import EditItem from "@/app/components/dialog/EditItem";
+import { IsNullOrEmpty } from "@/app/helpers/helper";
+import useItemsContext from "@/app/hooks/useItemsContext";
 import {
     useReactTable,
     getCoreRowModel,
@@ -5,6 +10,7 @@ import {
     getSortedRowModel,
     flexRender,
     SortingState,
+    Cell,
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { FaEdit, FaSortDown, FaSortUp, FaTrashAlt } from "react-icons/fa";
@@ -13,6 +19,7 @@ import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 type TTableProps = {};
 
 type Items = {
+    id: string;
     category: string;
     name: string;
     price: number;
@@ -27,81 +34,6 @@ type Column = {
     enableSorting?: boolean;
     size: number;
 };
-
-const data: Items[] = [
-    {
-        category: "Appetizers",
-        name: "Item 1",
-        price: 10,
-        cost: 5,
-        options: ["small", "medium", "large"],
-        stock: 20,
-    },
-    {
-        category: "Main Dish",
-        name: "Item 2",
-        price: 15,
-        cost: 8,
-        options: ["small", "medium", "large"],
-        stock: 15,
-    },
-    {
-        category: "Appetizers",
-        name: "Item 3",
-        price: 20,
-        cost: 10,
-        options: ["small", "medium", "large"],
-        stock: 10,
-    },
-    {
-        category: "Main Dish",
-        name: "Item 4",
-        price: 25,
-        cost: 12,
-        options: ["small", "medium", "large"],
-        stock: 5,
-    },
-    {
-        category: "Desserts",
-        name: "Item 5",
-        price: 8,
-        cost: 3,
-        options: ["small", "medium", "large"],
-        stock: 12,
-    },
-    {
-        category: "Desserts",
-        name: "Item 6",
-        price: 12,
-        cost: 6,
-        options: ["small", "medium", "large"],
-        stock: 8,
-    },
-    {
-        category: "Drinks",
-        name: "Item 7",
-        price: 5,
-        cost: 2,
-        options: ["small", "medium", "large"],
-        stock: 25,
-    },
-    {
-        category: "Drinks",
-        name: "Item 7",
-        price: 5,
-        cost: 2,
-        options: ["small", "medium", "large"],
-        stock: 25,
-    },
-    {
-        category: "Drinks",
-        name: "Item 7",
-        price: 5,
-        cost: 2,
-        options: ["small", "medium", "large"],
-        stock: 25,
-    },
-];
 
 const columns: Column[] = [
     {
@@ -133,19 +65,59 @@ const columns: Column[] = [
     {
         accessorKey: "stock",
         header: "Stock",
-        size: 100,
+        size: 150,
     },
 ];
 
 export default function Table({}: TTableProps) {
+    const [id, setId] = useState("");
     const [sorting, setSorting] = useState<SortingState>([]);
     const [pagination, setPagination] = useState({
         pageIndex: 0,
         pageSize: 10,
     });
 
+    const {
+        items,
+        setCategory,
+        setName,
+        setPrice,
+        setCost,
+        setOptions,
+        setStock,
+        editItemModal,
+        deleteItemModal,
+    } = useItemsContext();
+
+    const handleDeleteIconClick = (cell: any) => {
+        const { row } = cell;
+        const { id } = row.original;
+
+        deleteItemModal.current?.showModal();
+        setId(id);
+    };
+
+    const handleEditIconClick = (cell: any) => {
+        const { row } = cell;
+        const { id } = row.original;
+
+        editItemModal.current?.showModal();
+
+        const item = items.find((item) => item.id === id);
+
+        if (IsNullOrEmpty(item)) return;
+
+        setCategory(item!.category);
+        setName(item!.name);
+        setPrice(item!.price);
+        setCost(item!.cost);
+        setOptions(item!.options);
+        setStock(item!.stock);
+        setId(id);
+    };
+
     const table = useReactTable({
-        data,
+        data: items || [],
         columns,
         state: {
             sorting,
@@ -218,8 +190,18 @@ export default function Table({}: TTableProps) {
                                     {index ===
                                         row.getVisibleCells().length - 1 && (
                                         <>
-                                            <FaEdit className="absolute top-1/2 right-8  transform -translate-y-1/2 text-blue-500 cursor-pointer" />
-                                            <FaTrashAlt className="absolute top-1/2 right-2 transform -translate-y-1/2 text-red-500 cursor-pointer" />
+                                            <FaEdit
+                                                className="absolute top-1/2 right-8  transform -translate-y-1/2 text-blue-500 cursor-pointer"
+                                                onClick={() => {
+                                                    handleEditIconClick(cell);
+                                                }}
+                                            />
+                                            <FaTrashAlt
+                                                className="absolute top-1/2 right-2 transform -translate-y-1/2 text-red-500 cursor-pointer"
+                                                onClick={() => {
+                                                    handleDeleteIconClick(cell);
+                                                }}
+                                            />
                                         </>
                                     )}
                                 </td>
@@ -250,6 +232,12 @@ export default function Table({}: TTableProps) {
                     <GrFormNextLink />
                 </button>
             </div>
+            <Dialog ref={deleteItemModal} className="w-auto">
+                <DeleteItem id={id} />
+            </Dialog>
+            <Dialog ref={editItemModal} className="w-auto">
+                <EditItem id={id} />
+            </Dialog>
         </div>
     );
 }
