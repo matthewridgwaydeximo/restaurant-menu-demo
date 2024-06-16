@@ -208,17 +208,6 @@ export default function ItemsContextProvider({
             );
             setItems(items.map((item) => (item.id === id ? params : item)));
             setIsSuccess(true);
-
-            setTimeout(() => {
-                setIsSuccess(false);
-
-                setCategory("Appetizers");
-                setName("");
-                setPrice("");
-                setCost("");
-                setOptions([]);
-                setStock("");
-            }, 1000);
         } catch (error) {
             console.error("Error editing item:", error);
         }
