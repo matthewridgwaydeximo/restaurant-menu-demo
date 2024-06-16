@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 
 type TAlertProps = {
     children: ReactNode;
@@ -7,7 +7,7 @@ type TAlertProps = {
     className?: string;
 };
 
-export default function Alert({ children, className }: TAlertProps) {
+export default function Alert({ children, text, className }: TAlertProps) {
     return (
         <div
             role="alert"
@@ -16,7 +16,7 @@ export default function Alert({ children, className }: TAlertProps) {
             })}
         >
             {children}
-            <span>Your purchase has been confirmed!</span>
+            <span>{text}</span>
         </div>
     );
 }

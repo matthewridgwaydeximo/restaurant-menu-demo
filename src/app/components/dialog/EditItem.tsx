@@ -6,7 +6,11 @@ import useItemsContext from "@/app/hooks/useItemsContext";
 import { MdCheck, MdOutlineErrorOutline } from "react-icons/md";
 import { TagsInput } from "react-tag-input-component";
 
-export default function AddItem() {
+type TEditItemProps = {
+    id: string;
+};
+
+export default function EditItem({ id }: TEditItemProps) {
     const {
         category,
         name,
@@ -19,17 +23,17 @@ export default function AddItem() {
         onCategoryChange,
         onInputChange,
         onTagsChange,
-        onAddItem,
+        onEditItem,
     } = useItemsContext();
 
     return (
         <div className="flex flex-col flex-wrap justify-center items-center gap-4">
-            <h2 className="text-2xl font-bold text-teal">Add New Item</h2>
+            <h2 className="text-2xl font-bold text-teal">Edit Item</h2>
 
             {isSuccess && (
                 <Alert
                     className="alert-success w-fit"
-                    text="You've successfully added a new item!"
+                    text="You've successfully editted an item!"
                 >
                     <MdCheck />
                 </Alert>
@@ -104,9 +108,9 @@ export default function AddItem() {
             </div>
 
             <Button
-                text="Add Item"
+                text="Edit Item"
                 className="btn-accent w-32 uppercase text-white font-bold"
-                onClick={onAddItem}
+                onClick={() => onEditItem(id)}
             />
         </div>
     );
