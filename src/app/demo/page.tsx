@@ -19,7 +19,6 @@ import Button from "@/app/components/common/Button";
 import Input from "@/app/components/common/Input";
 import Dialog from "@/app/components/common/Dialog";
 import Alert from "@/app/components/common/Alert";
-import Loading from "@/app/components/common/Loading";
 import Table from "@/app/components/common/Table";
 
 export default function Demo() {
@@ -30,9 +29,7 @@ export default function Demo() {
     return (
         <>
             <div className="flex w-full h-12 justify-center items-center">
-                <h1 className="text-2xl font-bold text-teal">
-                    Demo for components
-                </h1>
+                <h1 className="text-2xl font-bold text-teal">Demo for components</h1>
             </div>
 
             <div className="flex w-full h-auto p-11 gap-4 items-center">
@@ -91,22 +88,13 @@ export default function Demo() {
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-2">
                     <h2 className="text-1xl font-bold text-teal">Alerts</h2>
-                    <Alert
-                        className="alert-success"
-                        text="Your puchase has been confirmed"
-                    >
+                    <Alert className="alert-success" text="Your puchase has been confirmed">
                         <MdCheck />
                     </Alert>
-                    <Alert
-                        className="alert-warning"
-                        text="Warning: Invalid email address!"
-                    >
+                    <Alert className="alert-warning" text="Warning: Invalid email address!">
                         <CiWarning />
                     </Alert>
-                    <Alert
-                        className="alert-error"
-                        text="Error! Task failed successfully."
-                    >
+                    <Alert className="alert-error" text="Error! Task failed successfully.">
                         <MdErrorOutline />
                     </Alert>
                 </div>
@@ -173,9 +161,7 @@ export default function Demo() {
             <Dialog ref={modalRef} className="w-[40%] ">
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-col flex-wrap justify-center items-center gap-4">
-                        <h2 className="text-2xl font-bold text-teal">
-                            Add New Item
-                        </h2>
+                        <h2 className="text-2xl font-bold text-teal">Add New Item</h2>
 
                         <Alert
                             className="alert-success w-fit"
