@@ -5,7 +5,6 @@ import { TagsInput } from "react-tag-input-component";
 import { MdErrorOutline, MdCheck } from "react-icons/md";
 import { CiWarning } from "react-icons/ci";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
-import { FaSortUp, FaSortDown } from "react-icons/fa";
 import Button from "@/app/components/common/Button";
 import Input from "@/app/components/common/Input";
 import Dialog from "@/app/components/common/Dialog";
