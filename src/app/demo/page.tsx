@@ -17,9 +17,9 @@ export default function Demo() {
 
     return (
         <>
-            <div className="flex w-full h-12 justify-center items-center">
+            {/* <div className="flex w-full h-12 justify-center items-center">
                 <h1 className="text-2xl font-bold text-teal">Demo for components</h1>
-            </div>
+            </div> */}
 
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-4">
