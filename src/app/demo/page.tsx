@@ -21,7 +21,7 @@ export default function Demo() {
                 <h1 className="text-2xl font-bold text-teal">Demo for components</h1>
             </div> */}
 
-            <div className="flex w-full h-auto p-11 gap-4 items-center">
+            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-4">
                     <h2 className="text-1xl font-bold text-teal">Button</h2>
                     <Button
@@ -60,7 +60,7 @@ export default function Demo() {
                         onClick={() => alert("Button clicked: Link")}
                     />
                 </div>
-            </div>
+            </div> */}
 
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
