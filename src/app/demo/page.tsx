@@ -89,7 +89,7 @@ export default function Demo() {
                 </div>
             </div> */}
 
-            <div className="flex w-full h-auto p-11 gap-4">
+            {/* <div className="flex w-full h-auto p-11 gap-4">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Loading</h2>
                     <span className="loading loading-ring loading-xs"></span>
@@ -97,7 +97,7 @@ export default function Demo() {
                     <span className="loading loading-ring loading-md"></span>
                     <span className="loading loading-ring loading-lg"></span>
                 </div>
-            </div>
+            </div> */}
 
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
