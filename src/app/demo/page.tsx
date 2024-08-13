@@ -99,7 +99,7 @@ export default function Demo() {
                 </div>
             </div> */}
 
-            <div className="flex w-full h-auto p-11 gap-4 items-center">
+            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Dropdown</h2>
                     <select
@@ -111,7 +111,7 @@ export default function Demo() {
                         <option>Greedo</option>
                     </select>
                 </div>
-            </div>
+            </div> */}
 
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
