@@ -17,11 +17,11 @@ export default function Demo() {
 
     return (
         <>
-            {/* <div className="flex w-full h-12 justify-center items-center">
+            <div className="flex w-full h-12 justify-center items-center">
                 <h1 className="text-2xl font-bold text-teal">Demo for components</h1>
-            </div> */}
+            </div>
 
-            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
+            <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-4">
                     <h2 className="text-1xl font-bold text-teal">Button</h2>
                     <Button
@@ -60,9 +60,9 @@ export default function Demo() {
                         onClick={() => alert("Button clicked: Link")}
                     />
                 </div>
-            </div> */}
+            </div>
 
-            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
+            <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Modal</h2>
 
@@ -72,9 +72,9 @@ export default function Demo() {
                         onClick={() => modalRef.current!.showModal()}
                     />
                 </div>
-            </div> */}
+            </div>
 
-            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
+            <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-2">
                     <h2 className="text-1xl font-bold text-teal">Alerts</h2>
                     <Alert className="alert-success" text="Your puchase has been confirmed">
@@ -87,9 +87,9 @@ export default function Demo() {
                         <MdErrorOutline />
                     </Alert>
                 </div>
-            </div> */}
+            </div>
 
-            {/* <div className="flex w-full h-auto p-11 gap-4">
+            <div className="flex w-full h-auto p-11 gap-4">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Loading</h2>
                     <span className="loading loading-ring loading-xs"></span>
@@ -97,9 +97,9 @@ export default function Demo() {
                     <span className="loading loading-ring loading-md"></span>
                     <span className="loading loading-ring loading-lg"></span>
                 </div>
-            </div> */}
+            </div>
 
-            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
+            <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Dropdown</h2>
                     <select
@@ -111,7 +111,7 @@ export default function Demo() {
                         <option>Greedo</option>
                     </select>
                 </div>
-            </div> */}
+            </div>
 
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
