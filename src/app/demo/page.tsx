@@ -21,46 +21,7 @@ export default function Demo() {
                 <h1 className="text-2xl font-bold text-teal">Demo for components</h1>
             </div> */}
 
-            <div className="flex w-full h-auto p-11 gap-4 items-center">
-                <div className="flex flex-col gap-4">
-                    <h2 className="text-1xl font-bold text-teal">Button</h2>
-                    <Button
-                        text="Button"
-                        className="btn w-32"
-                        onClick={() => alert("Button clicked: Button")}
-                    />
-                    <Button
-                        text="Neutral"
-                        className="btn btn-neutral w-32"
-                        onClick={() => alert("Button clicked: Neutral")}
-                    />
-                    <Button
-                        text="Primary"
-                        className="btn-primary w-32"
-                        onClick={() => alert("Button clicked: Primary")}
-                    />
-                    <Button
-                        text="Secondary"
-                        className="btn btn-secondary w-32"
-                        onClick={() => alert("Button clicked: Secondary")}
-                    />
-                    <Button
-                        text="Accent"
-                        className="btn btn-accent w-32"
-                        onClick={() => alert("Button clicked: Accent")}
-                    />
-                    <Button
-                        text="Ghost"
-                        className="btn btn-ghost w-32"
-                        onClick={() => alert("Button clicked: Ghost")}
-                    />
-                    <Button
-                        text="Link"
-                        className="btn btn-link w-32"
-                        onClick={() => alert("Button clicked: Link")}
-                    />
-                </div>
-            </div>
+            {/* R */}
 
             <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
