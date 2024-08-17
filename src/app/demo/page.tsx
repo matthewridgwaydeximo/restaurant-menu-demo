@@ -35,7 +35,7 @@ export default function Demo() {
                 </div>
             </div> */}
 
-            <div className="flex w-full h-auto p-11 gap-4 items-center">
+            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div className="flex flex-col gap-2">
                     <h2 className="text-1xl font-bold text-teal">Alerts</h2>
                     <Alert className="alert-success" text="Your puchase has been confirmed">
@@ -48,7 +48,7 @@ export default function Demo() {
                         <MdErrorOutline />
                     </Alert>
                 </div>
-            </div>
+            </div> */}
 
             <div className="flex w-full h-auto p-11 gap-4">
                 <div>
