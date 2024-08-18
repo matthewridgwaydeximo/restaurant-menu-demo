@@ -104,9 +104,9 @@ export default function Demo() {
                     />
                 </div>
             </div> */}
-            <div className="w-full p-10 flex justify-center">
+            {/* <div className="w-full p-10 flex justify-center">
                 <Table />
-            </div>
+            </div> */}
 
             <Dialog ref={modalRef} className="w-[40%] ">
                 <div className="flex flex-col gap-2">
