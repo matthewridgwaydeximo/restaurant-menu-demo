@@ -74,7 +74,7 @@ export default function Demo() {
                 </div>
             </div> */}
 
-            <div className="flex w-full h-auto p-11 gap-4 items-center">
+            {/* <div className="flex w-full h-auto p-11 gap-4 items-center">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Text Input</h2>
                     <Input
@@ -86,7 +86,7 @@ export default function Demo() {
                         onChange={(e) => setText(e.target.value)}
                     />
                 </div>
-            </div>
+            </div> */}
 
             <div className="flex max-w-[600px] p-10 gap-4 items-center">
                 <div>
