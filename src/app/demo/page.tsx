@@ -88,7 +88,7 @@ export default function Demo() {
                 </div>
             </div> */}
 
-            <div className="flex max-w-[600px] p-10 gap-4 items-center">
+            {/* <div className="flex max-w-[600px] p-10 gap-4 items-center">
                 <div>
                     <h2 className="text-1xl font-bold text-teal">Text Input</h2>
                     <TagsInput
@@ -103,7 +103,7 @@ export default function Demo() {
                         // disabled
                     />
                 </div>
-            </div>
+            </div> */}
             <div className="w-full p-10 flex justify-center">
                 <Table />
             </div>
