@@ -9,6 +9,7 @@ import Input from "@/app/components/common/Input";
 import Dialog from "@/app/components/common/Dialog";
 import Alert from "@/app/components/common/Alert";
 import Table from "@/app/components/common/Table";
+import Loading from "@/app/components/common/Loading";
 
 export default function Demo() {
     const modalRef = useRef<HTMLDialogElement>(null);
@@ -223,7 +224,7 @@ export default function Demo() {
                     </div>
                 </div>
             </Dialog>
-            {/* <Loading /> */}
+            <Loading />
         </>
     );
 }
